@@ -10,6 +10,10 @@ public class MackShop {
     static int[] vendaAtualIds;
     static int[] vendaAtualQuantidades;
 
+    static int[] historicoIdsPedidos;
+    static double[] historicoValoresPedidos;
+    static int[][] historicoItensVendidos;
+
     public static void main(String[] args) {
         int opcao;
         boolean iniciada = false;
@@ -31,7 +35,6 @@ public class MackShop {
                         break;
                     }
                 case 3:
-                    System.out.println("teste");
                     if (iniciada == false) {
                         System.out.println("Base nao iniciada, você deve digitar a opção 1 antes");
                         break;
@@ -39,10 +42,10 @@ public class MackShop {
                         adicionarItemVenda();
                         break;
                     }
-                /*case 4:
+                case 4:
                     verResumoDaVendaAtual();
                     break;
-                case 5:
+                /*case 5:
                     finalizarVenda();
                     break;
                 case 6:
@@ -95,7 +98,7 @@ public class MackShop {
     }
 
     public static void catalogoDeProdutos() {
-        System.out.println("\n****************** Catálogo de Produtos ******************");
+        System.out.println("\n*************** Catálogo de Produtos **************");
         System.out.printf("%-5s | %-20s | %-10s | %-10s\n", "ID", "Descrição", "Preço", "Estoque");
         System.out.println("---------------------------------------------------");
         for (int i = 0; i < idsProdutos.length; i++) {
@@ -121,6 +124,22 @@ public class MackShop {
         }
     }
 
+    public static void verResumoDaVendaAtual() {
+        System.out.println("\n*********************** Resumo da Venda Atual **********************");
+        System.out.printf("%-3s | %-5s | %-20s | %-5s | %-10s | %-10s%n", "#", "ID", "Descrição", "QTD", "Vl. Unit.", "Vl. Total");
+        System.out.println("--------------------------------------------------------------------");
+        for (int i = 0; i < vendaAtualIds.length; i++) {
+            int id = vendaAtualIds[i];
+            int qntd = vendaAtualQuantidades[i];
+            double subtotal = qntd * precosProdutos[i];
+
+            System.out.printf("%-3d | %-5d | %-20s | %-5d | %-10.2f | %-10.2f%n", i, id, nomesProdutos[id-1], qntd, precosProdutos[i], subtotal);
+        }
+    }
+
+    public static void finalizarVenda() {
+
+    }
     /*public static void vendaAtual() {
         int[] vendaAtualIds = new int[100];
         int[] vendaAtualQuantidades = new int[100];
