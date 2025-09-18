@@ -117,7 +117,7 @@ public class MackShop {
         qntdProduto = entrada.nextInt();
         
         for (int i = 0; i < idsProdutos.length; i++) {
-            if (idsProdutos[i] == idProduto && estoquesProdutos[i] > 0) {
+            if (idsProdutos[i] == idProduto && estoquesProdutos[i] > 0 && qntdProduto < estoquesProdutos[i]) {
                 vendaAtualIds = new int[]{idProduto};
                 vendaAtualQuantidades = new int[]{qntdProduto};
             }
