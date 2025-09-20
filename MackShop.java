@@ -7,12 +7,15 @@ public class MackShop {
     static double[] precosProdutos;
     static int[] estoquesProdutos;
 
-    static int[] vendaAtualIds;
-    static int[] vendaAtualQuantidades;
+    static int[] vendaAtualIds = new int[100];
+    static int[] vendaAtualQuantidades = new int[100];
 
     static int[] historicoIdsPedidos;
     static double[] historicoValoresPedidos;
     static int[][] historicoItensVendidos;
+
+    static int contVendaAtualIds = 0;
+    static int contVendaAtualQuantidades = 0;
 
     public static void main(String[] args) {
         int opcao;
@@ -118,8 +121,21 @@ public class MackShop {
         
         for (int i = 0; i < idsProdutos.length; i++) {
             if (idsProdutos[i] == idProduto && estoquesProdutos[i] > 0 && qntdProduto < estoquesProdutos[i]) {
-                vendaAtualIds = new int[]{idProduto};
-                vendaAtualQuantidades = new int[]{qntdProduto};
+                // vendaAtualIds = new int[]{idProduto};
+                if (contVendaAtualIds == 0) {
+                    vendaAtualIds[0] = idProduto;
+                    contVendaAtualIds += 1;
+                } else {
+                    vendaAtualIds[i] = idProduto;
+                    contVendaAtualIds += 1;
+                }
+                if (contVendaAtualQuantidades == 0) {
+                    vendaAtualQuantidades[0] = qntdProduto;
+                    contVendaAtualQuantidades += 1;
+                } else {
+                    vendaAtualQuantidades[i] = qntdProduto;
+                    contVendaAtualQuantidades += 1;
+                }
             }
         }
     }
@@ -128,12 +144,12 @@ public class MackShop {
         System.out.println("\n*********************** Resumo da Venda Atual **********************");
         System.out.printf("%-3s | %-5s | %-20s | %-5s | %-10s | %-10s%n", "#", "ID", "Descrição", "QTD", "Vl. Unit.", "Vl. Total");
         System.out.println("--------------------------------------------------------------------");
-        for (int i = 0; i < vendaAtualIds.length; i++) {
+        for (int i = 0; i < contVendaAtualIds; i++) {
             int id = vendaAtualIds[i];
             int qntd = vendaAtualQuantidades[i];
             double subtotal = qntd * precosProdutos[i];
 
-            System.out.printf("%-3d | %-5d | %-20s | %-5d | %-10.2f | %-10.2f%n", i, id, nomesProdutos[id-1], qntd, precosProdutos[i], subtotal);
+            System.out.printf("%-3d | %-5d | %-20s | %-5d | %-10.2f | %-10.2f%n", i, id, nomesProdutos[i], qntd, precosProdutos[i], subtotal);
         }
     }
 
