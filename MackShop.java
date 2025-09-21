@@ -14,8 +14,7 @@ public class MackShop {
     static double[] historicoValoresPedidos;
     static int[][] historicoItensVendidos;
 
-    static int contVendaAtualIds = 0;
-    static int contVendaAtualQuantidades = 0;
+    static int contVendaAtual = 0;
 
     public static void main(String[] args) {
         int opcao;
@@ -124,21 +123,11 @@ public class MackShop {
         qntdProduto = entrada.nextInt();
         
         for (int i = 0; i < idsProdutos.length; i++) {
-            if (idsProdutos[i] == idProduto && estoquesProdutos[i] > 0 && qntdProduto < estoquesProdutos[i]) {
-                if (contVendaAtualIds == 0) {
-                    vendaAtualIds[0] = idProduto;
-                    contVendaAtualIds += 1;
-                } else {
-                    vendaAtualIds[i] = idProduto;
-                    contVendaAtualIds += 1;
-                }
-                if (contVendaAtualQuantidades == 0) {
-                    vendaAtualQuantidades[0] = qntdProduto;
-                    contVendaAtualQuantidades += 1;
-                } else {
-                    vendaAtualQuantidades[i] = qntdProduto;
-                    contVendaAtualQuantidades += 1;
-                }
+            if (idsProdutos[i] == idProduto && estoquesProdutos[i] > 0 && qntdProduto <= estoquesProdutos[i]) {
+                vendaAtualIds[contVendaAtual] = idProduto;
+                vendaAtualQuantidades[contVendaAtual] = qntdProduto;
+                contVendaAtual++;
+                System.out.println("Produto adicionado à venda.");
             }
         }
     }
@@ -171,7 +160,7 @@ public class MackShop {
         System.out.println("\n*********************** Resumo da Venda Atual **********************");
         System.out.printf("%-3s | %-5s | %-20s | %-5s | %-10s | %-10s%n", "#", "ID", "Descrição", "QTD", "Vl. Unit.", "Vl. Total");
         System.out.println("--------------------------------------------------------------------");
-        for (int i = 0; i < contVendaAtualIds; i++) {
+        for (int i = 0; i < contVendaAtual; i++) {
             int id = vendaAtualIds[i];
             int qntd = vendaAtualQuantidades[i];
             double subtotal = qntd * precosProdutos[id-1];
@@ -180,10 +169,10 @@ public class MackShop {
         }
     }
 
-    /*public static void finalizarVenda() {
+    // public static void finalizarVenda() {
         
-    }
-*/
+    // }
+
     public static void imprimirNotaFiscal() {
         String linha = "*".repeat(72);
         String simbolo = "*";
