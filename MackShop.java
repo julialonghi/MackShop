@@ -97,6 +97,10 @@ public class MackShop {
         estoquesProdutos = new int[]{15, 20, 10, 7, 3};
 
         System.out.println("Base inicializada com sucesso!");
+        System.out.println("### Verificação dos Produtos ###");
+        for (int i = 0; i < idsProdutos.length; i++) {
+            System.out.printf("ID: %d, Nome: %s, Preço: %.2f%n", idsProdutos[i], nomesProdutos[i], precosProdutos[i]);
+        }
         return true;
     }
 
@@ -121,7 +125,6 @@ public class MackShop {
         
         for (int i = 0; i < idsProdutos.length; i++) {
             if (idsProdutos[i] == idProduto && estoquesProdutos[i] > 0 && qntdProduto < estoquesProdutos[i]) {
-                // vendaAtualIds = new int[]{idProduto};
                 if (contVendaAtualIds == 0) {
                     vendaAtualIds[0] = idProduto;
                     contVendaAtualIds += 1;
@@ -140,6 +143,30 @@ public class MackShop {
         }
     }
 
+//     public static void adicionarItemVenda() {
+//     int idProduto;
+//     int qntdProduto;
+
+//     System.out.println("Digite o ID do produto: ");
+//     idProduto = entrada.nextInt();
+
+//     System.out.println("Digite a quantidade do produto: ");
+//     qntdProduto = entrada.nextInt();
+
+//     for (int i = 0; i < idsProdutos.length; i++) {
+//         if (idsProdutos[i] == idProduto && estoquesProdutos[i] >= qntdProduto) {
+//             vendaAtualIds[contVendaAtualIds] = idProduto;
+//             vendaAtualQuantidades[contVendaAtualIds] = qntdProduto;
+//             contVendaAtualIds++; // só um contador é suficiente
+//             System.out.println("Produto adicionado à venda.");
+//             return;
+//         }
+//     }
+
+//     System.out.println("Produto inválido ou quantidade indisponível.");
+// }
+
+
     public static void verResumoDaVendaAtual() {
         System.out.println("\n*********************** Resumo da Venda Atual **********************");
         System.out.printf("%-3s | %-5s | %-20s | %-5s | %-10s | %-10s%n", "#", "ID", "Descrição", "QTD", "Vl. Unit.", "Vl. Total");
@@ -147,9 +174,9 @@ public class MackShop {
         for (int i = 0; i < contVendaAtualIds; i++) {
             int id = vendaAtualIds[i];
             int qntd = vendaAtualQuantidades[i];
-            double subtotal = qntd * precosProdutos[i];
+            double subtotal = qntd * precosProdutos[id-1];
 
-            System.out.printf("%-3d | %-5d | %-20s | %-5d | %-10.2f | %-10.2f%n", i, id, nomesProdutos[i], qntd, precosProdutos[i], subtotal);
+            System.out.printf("%-3d | %-5d | %-20s | %-5d | %-10.2f | %-10.2f%n", i, id, nomesProdutos[id-1], qntd, precosProdutos[id-1], subtotal);
         }
     }
 
