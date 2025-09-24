@@ -1,22 +1,22 @@
 import java.util.Scanner;
 public class MackShop {
     static Scanner entrada = new Scanner(System.in);
-
+    // catálogo de produtos
     static int[] idsProdutos;
     static String[] nomesProdutos;
     static double[] precosProdutos;
     static int[] estoquesProdutos;
-
+    // venda atual
     static int[] vendaAtualIds = new int[100];
     static int[] vendaAtualQuantidades = new int[100];
-
+    static int contVendaAtual = 0;
+    static double totalVenda = 0;
+    //histórico de vendas
     static int[] historicoIdsPedidos = new int[100];
     static double[] historicoValoresPedidos = new double[100];;
     static int[][] historicoItensVendidos = new int[100][3];
     static int contHistoricoItens = 0;
-
-    static int contVendaAtual = 0;
-    static double totalVenda = 0;
+    // finalizar venda
     static int idPedido = 1000;
     static int contIdPedidos = 0;
 
@@ -49,23 +49,53 @@ public class MackShop {
                         break;
                     }
                 case 4:
-                    verResumoDaVendaAtual();
-                    break;
+                    if (iniciada == false) {
+                        System.out.print("Base não inicializada, você deve digitar a opção 1 antes");
+                        break;
+                    } else {
+                        verResumoDaVendaAtual();
+                        break;
+                    }
                 case 5:
-                    finalizarVenda();
-                    break;
+                    if (iniciada == false) {
+                        System.out.print("Base não inicializada, você deve digitar a opção 1 antes");
+                        break;
+                    } else {
+                        finalizarVenda();
+                        break;
+                    }
                 case 6:
-                    verHistoricoVendas();
-                    break;
+                    if (iniciada == false) {
+                        System.out.print("Base não inicializada, você deve digitar a opção 1 antes");
+                        break;
+                    } else {
+                        verHistoricoVendas();
+                        break;
+                    }
                 case 7:
-                    buscarVendaEspecifica();
-                    break;
+                    if (iniciada == false) {
+                        System.out.print("Base não inicializada, você deve digitar a opção 1 antes");
+                        break;
+                    } else {
+                        buscarVendaEspecifica();
+                        break;
+                    }
                 case 8:
-                    reporEstoque();
-                    break;
+                    if (iniciada == false) {
+                        System.out.print("Base não inicializada, você deve digitar a opção 1 antes");
+                        break;
+                    } else {
+                        reporEstoque();
+                        break;
+                    }
                 case 9:
-                    relatorioEstoqueBaixo();
-                    break;
+                    if (iniciada == false) {
+                        System.out.print("Base não inicializada, você deve digitar a opção 1 antes");
+                        break;
+                    } else {
+                        relatorioEstoqueBaixo();
+                        break;
+                    }
                 case 10:
                     System.out.println("Saindo...");
                 // default:
