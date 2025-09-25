@@ -186,7 +186,7 @@ public class MackShop {
             System.out.println("Nenhum item na venda atual para finalizar.");
             return;
         }
-        
+
         idPedido++;
 
         historicoIdsPedidos[idPedido - 1001] = idPedido;
@@ -282,8 +282,6 @@ public class MackShop {
         // Percorre a matriz de histórico para imprimir os itens desse pedido
         for (int i = 0; i < contHistoricoItens; i++) {
             if (historicoItensVendidos[i][0] == idPedido) {
-                pedidoEncontrado = true;
-
                 int idProduto = historicoItensVendidos[i][1];
                 int qtd = historicoItensVendidos[i][2];
 
@@ -297,13 +295,6 @@ public class MackShop {
                         contadorItens++, idProduto, descricao, qtd, valorUnit, subtotal);
             }
         }
-
-        if (!pedidoEncontrado) {
-            System.out.println("Pedido não encontrado.");
-            System.out.println("*********************************************************************************************");
-            return;
-        }
-
         // Rodapé
         System.out.println("-----------------------------------------------------------------------------------------------------------");
         System.out.printf("* %-50s | R$ %-10.2f *%n", "TOTAL", total);
@@ -391,23 +382,9 @@ public class MackShop {
     public static void relatorioEstoqueBaixo() {
         System.out.println("----------- Relatorio de estoque baixo ------------------");
         for (int i = 0; i < idsProdutos.length; i++){
-            if ( estoquesProdutos[i] < 10 ){
+            if ( estoquesProdutos[i] < 5 ){
                 System.out.printf("ID: %d - %s | Estoque: %d\n", idsProdutos[i], nomesProdutos[i], estoquesProdutos[i]);
             }
         }
     }
-
-
-    /*public static void vendaAtual() {
-        int[] vendaAtualIds = new int[100];
-        int[] vendaAtualQuantidades = new int[100];
-
-    }
-
-    public static void historicoDeVendas() {
-        int[] historicoIdsPedidos = new int[100];
-        double[] historicoValoresPedidos = new int[100];
-        int[][] historicoItensVendidos = new int[100][3];
-
-    }*/
 }
