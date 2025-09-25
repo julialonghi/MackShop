@@ -167,7 +167,7 @@ public class MackShop {
     public static void verResumoDaVendaAtual() {
         double subtotal = 0;
         String simbolo = "*";
-        System.out.println("\n*********************** Resumo da Venda Atual **********************");
+        System.out.println("\n************************ Resumo da Venda Atual ***********************");
         System.out.printf("* %-3s | %-5s | %-20s | %-5s | %-10s | %-10s%n", "#", "ID", "Descrição", "QTD", "Vl. Unit.", "Vl. Total");
         System.out.println("* --------------------------------------------------------------------");
         for (int i = 0; i < contVendaAtual; i++) {
@@ -178,7 +178,7 @@ public class MackShop {
 
             System.out.printf("* %-3d | %-5d | %-20s | %-5d | %-10.2f | %-10.2f%n", i, id, nomesProdutos[id-1], qntd, precosProdutos[id-1], subtotal);
         }
-        System.out.printf("\n* TOTAL: R$%.2f %30s", totalVenda, simbolo);
+        System.out.printf("\n* TOTAL: R$%.2f %51s", totalVenda, simbolo);
     }
 
     public static void finalizarVenda() {
@@ -224,6 +224,7 @@ public class MackShop {
 
     public static void verHistoricoVendas() {
         for (int i = 0; i < contIdPedidos; i++) {
+            System.out.println("******************** Histórico de Vendas ********************");
             System.out.printf("\nPedido ID: %d - Valor Total: R$ %.2f\n", historicoIdsPedidos[i], historicoValoresPedidos[i]);
         }
     }
@@ -250,8 +251,7 @@ public class MackShop {
                 "* Data de Emissão: 25/09/2025  20:40:00                                                     *");
         System.out.println(
                 "*********************************************************************************************");
-        System.out.println(
-                "* ID   | DESCRIÇÃO            | QTD  | VL. UNIT.   | VL. TOTAL                              *");
+        System.out.printf("* %-3s | %-5s | %-30s | %-5s | %-11s | %-10s %11s %n", "#", "ID", "Descrição", "QTD", "Vl. Unit.", "Vl. Total", simbolo);
         System.out.println(
                 "---------------------------------------------------------------------------------------------");
 
@@ -267,17 +267,18 @@ public class MackShop {
 
                 total += subtotal;
 
-                System.out.printf("* %-3d | %-5d | %-30s | %-5d | R$ %-8.2f | R$ %-8.2f %20s %n", contadorItens++, idProduto, descricao, qtd, valorUnit, subtotal, simbolo);
+                System.out.printf("* %-3d | %-5d | %-30s | %-5d | R$ %-8.2f | R$ %-8.2f %10s %n",
+                        contadorItens++, idProduto, descricao, qtd, valorUnit, subtotal, simbolo);
             }
         }
         System.out.println(
                 "---------------------------------------------------------------------------------------------");
         System.out.printf(
-                "* SUBTOTAL: R$ %.2f                                                                       *\n", total);
+                "* SUBTOTAL: R$ %.2f                                                                      *\n", total);
         System.out.printf(
-                "* TOTAL: R$ %.2f                                                                          *\n", total);
+                "* TOTAL: R$ %.2f                                                                         *\n", total);
         System.out.println(
-                "********************************************************************************************");
+                "*********************************************************************************************");
         System.out.println(
                 "* OBRIGADO PELA PREFERÊNCIA! VOLTE SEMPRE!                                                  *");
         System.out.println(
