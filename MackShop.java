@@ -1,21 +1,25 @@
 import java.util.Scanner;
 public class MackShop {
     static Scanner entrada = new Scanner(System.in);
+
     // catálogo de produtos
     static int[] idsProdutos;
     static String[] nomesProdutos;
     static double[] precosProdutos;
     static int[] estoquesProdutos;
+
     // venda atual
     static int[] vendaAtualIds = new int[100];
     static int[] vendaAtualQuantidades = new int[100];
     static int contVendaAtual = 0;
     static double totalVenda = 0;
+
     //histórico de vendas
     static int[] historicoIdsPedidos = new int[100];
     static double[] historicoValoresPedidos = new double[100];;
     static int[][] historicoItensVendidos = new int[100][3];
     static int contHistoricoItens = 0;
+
     // finalizar venda
     static int idPedido = 1000;
     static int contIdPedidos = 0;
@@ -98,8 +102,6 @@ public class MackShop {
                     }
                 case 10:
                     System.out.println("Saindo...");
-                // default:
-                //     System.out.println("Número inválido");
             }
         } while (opcao != 10);
         entrada.close();
@@ -184,11 +186,13 @@ public class MackShop {
             System.out.println("Nenhum item na venda atual para finalizar.");
             return;
         }
+        
         idPedido++;
 
         historicoIdsPedidos[idPedido - 1001] = idPedido;
         historicoValoresPedidos[idPedido - 1001] = totalVenda;
         contIdPedidos++;
+
         for (int i = 0; i < contVendaAtual; i++) {
             int idProduto = vendaAtualIds[i];
             int qtd = vendaAtualQuantidades[i];
