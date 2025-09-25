@@ -231,6 +231,7 @@ public class MackShop {
     public static void imprimirNota(int idPedido) {
         double total = 0.0;
         int contadorItens = 1;
+        String simbolo = "*";
 
         System.out.println(
                 "\n*********************************************************************************************");
@@ -266,8 +267,7 @@ public class MackShop {
 
                 total += subtotal;
 
-                System.out.printf("* %-3d | %-5d | %-30s | %-5d | R$ %-8.2f | R$ %-8.2f *%n",
-                        contadorItens++, idProduto, descricao, qtd, valorUnit, subtotal);
+                System.out.printf("* %-3d | %-5d | %-30s | %-5d | R$ %-8.2f | R$ %-8.2f %20s %n", contadorItens++, idProduto, descricao, qtd, valorUnit, subtotal, simbolo);
             }
         }
         System.out.println(
