@@ -222,39 +222,6 @@ public class MackShop {
         System.out.println("Venda finalizada com sucesso!");
     }
 
-    // public static void imprimirNotaFiscal() {
-    //     String linha = "*".repeat(75);
-    //     String separador = "-".repeat(75);
-    //     String simbolo = "*";
-    //     System.out.println(linha);
-    //     System.out.printf("* MACKSHOP %61s", simbolo);
-    //     System.out.printf("\n* CNPJ: 12.345.678/0001-99  %44s\n", simbolo);
-    //     System.out.println(linha);
-    //     System.out.printf("* NOTA FISCAL - VENDA AO CONSUMIDOR %36s\n", simbolo);
-    //     System.out.printf("* Pedido ID: %-10d %43s\n", idPedido, simbolo);
-    //     System.out.printf("* Data de Emissão: 01/09/2025 15:15:30  %32s\n", simbolo);
-    //     System.out.println(linha);
-    //     System.out.printf("* %-3s | %-5s | %-20s | %-5s | %-10s | %-12s*\n","#", "ID", "DESCRIÇÃO", "QTD", "VL. UNIT.", "VL. TOTAL");
-    //     System.out.println(separador);
-    //     double subtotal = 0;
-    //     for (int i = 0; i < contVendaAtual; i++) {
-    //         int id = vendaAtualIds[i];
-    //         int qtd = vendaAtualQuantidades[i];
-    //         double valorUnitario = precosProdutos[id - 1];
-    //         double valorTotal = qtd * valorUnitario;
-    //         subtotal += valorTotal;
-
-    //         System.out.printf("* %-3d | %-5d | %-20s | %-5d | R$ %-8.2f | R$ %-10.2f*\n",
-    //                 (i + 1), id, nomesProdutos[id - 1], qtd, valorUnitario, valorTotal);
-    //     }
-    //     System.out.println(separador);
-    //     System.out.printf("* %-35s R$ %-10.2f %38s\n", "SUBTOTAL", subtotal, "*");
-    //     System.out.printf("* %-35s R$ %-10.2f %38s\n", "TOTAL", subtotal, "*");
-    //     System.out.println(linha);
-    //     System.out.printf("* OBRIGADO PELA PREFERÊNCIA! VOLTE SEMPRE! %29s\n", simbolo);
-    //     System.out.println(linha);
-    // }
-
     public static void verHistoricoVendas() {
         for (int i = 0; i < contIdPedidos; i++) {
             System.out.printf("\nPedido ID: %d - Valor Total: R$ %.2f\n", historicoIdsPedidos[i], historicoValoresPedidos[i]);
@@ -262,22 +229,30 @@ public class MackShop {
     }
 
     public static void imprimirNota(int idPedido) {
-        boolean pedidoEncontrado = false;
         double total = 0.0;
         int contadorItens = 1;
 
-        // Cabeçalho
-        System.out.println("*********************************************************************************************");
-        System.out.printf("* %-91s *%n", "MACKSHOP");
-        System.out.printf("* %-91s *%n", "CNPJ: 12.345.678/0001-99");
-        System.out.println("*********************************************************************************************");
-        System.out.printf("* %-91s *%n", "NOTA FISCAL - VENDA AO CONSUMIDOR");
-        System.out.printf("* Pedido ID: %-82d *%n", idPedido);
-        System.out.printf("* Data de Emissão: %-74s *%n", java.time.LocalDateTime.now());
-        System.out.println("*********************************************************************************************");
-        System.out.printf("* %-3s | %-5s | %-30s | %-5s | %-10s | %-10s *%n",
-                "#", "ID", "DESCRIÇÃO", "QTD", "VL. UNIT.", "VL. TOTAL");
-        System.out.println("-----------------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "\n*********************************************************************************************");
+        System.out.println(
+                "* MACKSHOP                                                                                  *");
+        System.out.println(
+                "* CNPJ: 12.345.678/0001-99                                                                  *");
+        System.out.println(
+                "*********************************************************************************************");
+        System.out.printf(
+                "* NOTA FISCAL - VENDA AO CONSUMIDOR                                                         *\n");
+        System.out.printf(
+                "* Pedido ID: %1d                                                                           *\n",
+                idPedido);
+        System.out.println(
+                "* Data de Emissão: 25/09/2025  20:40:00                                                     *");
+        System.out.println(
+                "*********************************************************************************************");
+        System.out.println(
+                "* ID   | DESCRIÇÃO            | QTD  | VL. UNIT.   | VL. TOTAL                              *");
+        System.out.println(
+                "---------------------------------------------------------------------------------------------");
 
         // Percorre a matriz de histórico para imprimir os itens desse pedido
         for (int i = 0; i < contHistoricoItens; i++) {
@@ -295,12 +270,18 @@ public class MackShop {
                         contadorItens++, idProduto, descricao, qtd, valorUnit, subtotal);
             }
         }
-        // Rodapé
-        System.out.println("-----------------------------------------------------------------------------------------------------------");
-        System.out.printf("* %-50s | R$ %-10.2f *%n", "TOTAL", total);
-        System.out.println("*********************************************************************************************");
-        System.out.printf("* %-91s *%n", "OBRIGADO PELA PREFERÊNCIA! VOLTE SEMPRE!");
-        System.out.println("*********************************************************************************************");
+        System.out.println(
+                "---------------------------------------------------------------------------------------------");
+        System.out.printf(
+                "* SUBTOTAL: R$ %.2f                                                                       *\n", total);
+        System.out.printf(
+                "* TOTAL: R$ %.2f                                                                          *\n", total);
+        System.out.println(
+                "********************************************************************************************");
+        System.out.println(
+                "* OBRIGADO PELA PREFERÊNCIA! VOLTE SEMPRE!                                                  *");
+        System.out.println(
+                "*********************************************************************************************\n");
     }
 
     public static void buscarVendaEspecifica() {
@@ -308,61 +289,6 @@ public class MackShop {
         int idSolicitado = entrada.nextInt();
         imprimirNota(idSolicitado);
     }
-
-    // public static void buscarVendaEspecifica() {
-    //     System.out.println("Digite o ID do pedido que deseja buscar:");
-    //     int idSolicitado = entrada.nextInt();
-
-    //     boolean pedidoEncontrado = false;
-    //     double total = 0.0;
-    //     int contadorItens = 1;
-
-    //     // Cabeçalho da nota
-    //     System.out.println("*********************************************************************************************");
-    //     System.out.printf("* %-91s *%n", "MACKSHOP");
-    //     System.out.printf("* %-91s *%n", "CNPJ: 12.345.678/0001-99");
-    //     System.out.println("*********************************************************************************************");
-    //     System.out.printf("* %-91s *%n", "NOTA FISCAL - VENDA AO CONSUMIDOR");
-    //     System.out.printf("* Pedido ID: %-82d *%n", idSolicitado);
-    //     System.out.printf("* Data de Emissão: %-74s *%n", java.time.LocalDateTime.now());
-    //     System.out.println("*********************************************************************************************");
-    //     System.out.printf("* %-3s | %-5s | %-30s | %-5s | %-10s | %-10s *%n",
-    //             "#", "ID", "DESCRIÇÃO", "QTD", "VL. UNIT.", "VL. TOTAL");
-    //     System.out.println("-----------------------------------------------------------------------------------------------------------");
-
-    //     // Percorre a matriz para encontrar todos os itens desse pedido
-    //     for (int i = 0; i < contHistoricoItens; i++) {
-    //         if (historicoItensVendidos[i][0] == idSolicitado) {
-    //             pedidoEncontrado = true;
-
-    //             int idProduto = historicoItensVendidos[i][1];  // coluna 1 = ID Produto
-    //             int qtd = historicoItensVendidos[i][2];        // coluna 2 = Quantidade
-
-    //             // Como os produtos começam no índice 0, usamos (idProduto - 1)
-    //             String descricao = nomesProdutos[idProduto - 1];
-    //             double valorUnit = precosProdutos[idProduto - 1];
-    //             double subtotal = valorUnit * qtd;
-
-    //             total += subtotal;
-
-    //             System.out.printf("* %-3d | %-5d | %-30s | %-5d | R$ %-8.2f | R$ %-8.2f *%n",
-    //                     contadorItens++, idProduto, descricao, qtd, valorUnit, subtotal);
-    //         }
-    //     }
-
-    //     if (!pedidoEncontrado) {
-    //         System.out.println("Pedido não encontrado.");
-    //         System.out.println("*********************************************************************************************");
-    //         return;
-    //     }
-
-    //     // Rodapé
-    //     System.out.println("-----------------------------------------------------------------------------------------------------------");
-    //     System.out.printf("* %-50s | R$ %-10.2f *%n", "TOTAL", total);
-    //     System.out.println("*********************************************************************************************");
-    //     System.out.printf("* %-91s *%n", "OBRIGADO PELA PREFERÊNCIA! VOLTE SEMPRE!");
-    //     System.out.println("*********************************************************************************************");
-    // }
 
     public static void reporEstoque(){
         System.out.println("Digite o ID do produto que deseja repor:");
